@@ -1,0 +1,190 @@
+@startuml
+<style>
+
+:root {
+  --color-bg: #121212;
+  --color-bg-light: #2e2e2e;
+  --color-surface-elevated: #2a2a2a;
+  --color-overlay: #00000080;
+  --color-border: #2c2c2c;
+
+  --color-primary: #90caf9;
+  --color-primary-hover: #64b5f6;
+  --color-primary-active: #42a5f5;
+
+  --color-secondary: #ce93d8;
+  --color-secondary-hover: #ba68c8;
+  --color-secondary-active: #ab47bc;
+
+  --color-accent: #ffb74d;
+  --color-accent-hover: #ffa726;
+  --color-accent-active: #ff9800;
+
+  --color-success: #66bb6a;
+  --color-warning: #ffa726;
+  --color-error: #ef5350;
+  --color-info: #29b6f6;
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #cccccc;
+  --color-text-muted: #999999;
+
+
+    --color-red: #e06c75;
+    --color-green: #98c379;
+    --color-yellow: #e5c07b;
+    --color-blue: #61afef;
+    --color-purple: #c678dd;
+    --color-teal: #56b6c2;
+
+
+    --color-fg: var(--color-text-primary);
+    --color-primary: var(--color-blue);
+}
+
+/* Global settings for all diagram types */
+element {
+    BackGroundColor: var(--color-bg);
+    FontColor: var(--color-fg);
+    Shadowing: false;
+    FontColor: var(--color-fg);
+    StereotypeFontColor: var(--color-fg);
+}
+
+/* General elements */
+arrow {
+    LineColor: var(--color-primary);
+}
+
+rectangle {
+    BackGroundColor: var(--color-bg-light);
+    LineColor: var(--color-primary);
+}
+
+sequenceDivider {
+    BackGroundColor: var(--color-bg-light);
+    LineColor: var(--color-fg);
+}
+
+/* Diagram-specific styling */
+
+/* Activity Diagram */
+activityDiagram {
+    activity {
+        BackgroundColor: var(--color-bg-light);
+        BarColor: var(--color-fg);
+        BorderColor: var(--color-primary);
+        DiamondBackgroundColor: var(--color-bg-light);
+        DiamondBorderColor: var(--color-primary);
+        EndColor: var(--color-red);
+        StartColor: var(--color-green);
+        StopColor: var(--color-red);
+    }
+}
+classDiagram {
+    BackgroundColor: var(--color-bg);
+    RoundCorner: 10;
+    Padding 30;
+
+    arrow {
+        LineColor var(--color-fg);
+    }
+    class {
+        BackgroundColor: var(--color-bg-light);
+        BorderColor: var(--color-primary);
+        Padding 30;
+    }
+}
+
+actor {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+    StereotypeFontColor: var(--color-fg);
+}
+
+agent {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+}
+
+cloud {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+}
+
+card {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+}
+
+class {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-fg);
+}
+
+control {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+    FontColor: var(--color-fg);
+    StereotypeFontColor: var(--color-fg);
+}
+
+database {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+}
+
+entity {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+}
+
+/* Object Diagram */
+object {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+}
+
+/* Package Diagram */
+package {
+    BackGroundColor: var(--color-bg);
+    BorderColor: var(--color-primary);
+}
+
+/* Person Diagram */
+person {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+}
+stack {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+}
+
+/* State Diagram */
+state {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+    EndColor: var(--color-red);
+    StartColor: var(--color-green);
+}
+
+/* Storage Diagram */
+storage {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-fg);
+}
+
+/* Swimlane */
+swimlane {
+    BorderColor: var(--color-fg);
+}
+
+/* Usecase Diagram */
+usecase {
+    BackGroundColor: var(--color-bg-light);
+    BorderColor: var(--color-primary);
+}
+</style>
+
+@enduml
