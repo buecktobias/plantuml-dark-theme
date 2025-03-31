@@ -1,10 +1,23 @@
 @startuml
-<style>
+' Global font and shadow settings
+skinparam defaultFontName "Roboto"
+skinparam defaultFontSize 16
+skinparam Shadowing false
+skinparam packageStyle rectangle
+skinparam stereotypeCBackgroundColor YellowGreen
+skinparam stereotypeCCircleColor YellowGreen
+skinparam CircledCharacterFontColor YellowGreen
+skinparam ClassStereotypeFontColor white
+skinparam CircledCharacterFontStyle bold
+skinparam BoxPadding 20
 
+<style>
 :root {
-  --color-bg: #121212;
-  --color-bg-light: #2e2e2e;
+  --color-bg-dark: #121212;
+  --color-bg-light: #3e3e4e;
+  --color-bg: #2e2e2e;
   --color-surface-elevated: #2a2a2a;
+  --color-bg-front: #3a3a3a;
   --color-overlay: #00000080;
   --color-border: #2c2c2c;
 
@@ -29,139 +42,165 @@
   --color-text-secondary: #cccccc;
   --color-text-muted: #999999;
 
+  --color-red: #e06c75;
+  --color-green: #98c379;
+  --color-yellow: #e5c07b;
+  --color-blue: #61afef;
+  --color-purple: #c678dd;
+  --color-teal: #56b6c2;
 
-    --color-red: #e06c75;
-    --color-green: #98c379;
-    --color-yellow: #e5c07b;
-    --color-blue: #61afef;
-    --color-purple: #c678dd;
-    --color-teal: #56b6c2;
-
-
-    --color-fg: var(--color-text-primary);
-    --color-primary: var(--color-blue);
+  --color-fg: var(--color-text-primary);
+  --color-primary: var(--color-blue);
 }
 
-element {
-    BackGroundColor: var(--color-bg);
-    FontColor: var(--color-fg);
-    Shadowing: false;
-    FontColor: var(--color-fg);
-    StereotypeFontColor: var(--color-fg);
+/* Universal defaults for all elements */
+'*' {
+  FontName "Roboto";
+  FontSize 16;
+  Padding 20;
 }
 
-/* General elements */
+/* Arrow styling */
 arrow {
-    LineColor: var(--color-primary);
+  LineThickness 2;
+  FontColor var(--color-fg);
+  FontSize 15;
+  LineColor var(--color-primary);
 }
 
-rectangle {
-    BackGroundColor: var(--color-bg-light);
-    LineColor: var(--color-primary);
-}
-
-sequenceDivider {
-    BackGroundColor: var(--color-bg-light);
-    LineColor: var(--color-fg);
-}
-
-/* Diagram-specific styling */
-
-/* Activity Diagram */
-activityDiagram {
-    activity {
-        BackgroundColor: var(--color-bg-light);
-        BarColor: var(--color-fg);
-        BorderColor: var(--color-primary);
-        DiamondBackgroundColor: var(--color-bg-light);
-        DiamondBorderColor: var(--color-primary);
-        EndColor: var(--color-red);
-        StartColor: var(--color-green);
-        StopColor: var(--color-red);
-    }
-}
+/* === Class Diagram styles === */
 classDiagram {
-    BackgroundColor: var(--color-bg);
-    RoundCorner: 10;
-    Padding 30;
-    StereotypeFontColor: var(--color-fg);
+  BackgroundColor var(--color-bg-dark);
+  LineColor var(--color-primary);
 
-
-    arrow {
-        LineColor var(--color-fg);
-    }
-    class {
-        BackgroundColor: var(--color-bg-light);
-        BorderColor: var(--color-primary);
-        Padding 30;
-        StereotypeFontColor: var(--color-fg);
-
-    }
+  class {
+    BackgroundColor var(--color-bg-light);
+    FontColor var(--color-fg);
+    LineColor var(--color-primary);
+    LineThickness 1;
+    RoundCorner 8;
+    Padding 20;
+    Margin 10;
+  }
+  interface {
+    BackgroundColor var(--color-bg-light);
+    FontColor var(--color-fg);
+    LineColor var(--color-teal);
+    LineThickness 2;
+    RoundCorner 5;
+    Padding 8;
+    Margin 10;
+  }
+  package {
+    FontStyle bold;
+    FontColor var(--color-fg);
+    BackgroundColor var(--color-bg);
+    LineColor var(--color-border);
+    LineThickness 1.5;
+    RoundCorner 5;
+    Padding 20;
+    Margin 20;
+  }
 }
 
-actor {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
+/* === Component Diagram styles === */
+componentDiagram {
+  BackgroundColor var(--color-bg-dark);
+  LineColor var(--color-secondary);
+
+  component {
+    BackgroundColor var(--color-bg-light);
+    LineColor var(--color-secondary);
+    LineThickness 2;
+    RoundCorner 5;
+    Padding 8;
+    Margin 10;
+  }
+  interface {
+    BackgroundColor var(--color-bg-light);
+    LineColor var(--color-secondary);
+    LineThickness 2;
+    RoundCorner 5;
+    Padding 8;
+    Margin 10;
+  }
+  package {
+    BackgroundColor var(--color-bg-dark);
+    LineColor var(--color-border);
+    LineThickness 1.5;
+    RoundCorner 5;
+    Padding 10;
+    Margin 20;
+  }
 }
 
-agent {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
+/* === Deployment Diagram styles === */
+deploymentDiagram {
+  BackgroundColor var(--color-bg-dark);
+  LineColor var(--color-accent-active);
+
+  node {
+    BackgroundColor var(--color-bg-light);
+    LineColor var(--color-accent-active);
+    LineThickness 2;
+    RoundCorner 5;
+    Padding 8;
+    Margin 10;
+  }
+  artifact {
+    BackgroundColor var(--color-bg-light);
+    LineColor var(--color-accent-active);
+    LineThickness 2;
+    RoundCorner 5;
+    Padding 8;
+    Margin 8;
+  }
+  component {
+    BackgroundColor var(--color-bg-light);
+    LineColor var(--color-accent-active);
+    LineThickness 2;
+    RoundCorner 5;
+    Padding 8;
+    Margin 8;
+  }
+  package {
+    BackgroundColor var(--color-bg-dark);
+    LineColor var(--color-border);
+    LineThickness 1.5;
+    RoundCorner 5;
+    Padding 10;
+    Margin 20;
+  }
+  database {
+    BackgroundColor var(--color-bg-light);
+    LineColor var(--color-accent-active);
+    LineThickness 2;
+    RoundCorner 5;
+    Padding 8;
+    Margin 8;
+  }
 }
 
-cloud {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
+/* === Common element styles (across all diagrams) === */
+title {
+  FontColor var(--color-fg);
+  FontSize 18;
+  FontStyle bold;
 }
-
-card {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
+legend {
+  BackgroundColor var(--color-surface-elevated);
+  LineColor var(--color-border);
+  FontColor var(--color-fg);
+  RoundCorner 5;
+  Padding 8;
 }
-
-class {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-fg);
-}
-
-control {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
-    FontColor: var(--color-fg);
-    StereotypeFontColor: var(--color-fg);
-}
-
-database {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
-}
-
-entity {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
-}
-
-/* Object Diagram */
-object {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
-}
-
-/* Package Diagram */
-package {
-    BackGroundColor: var(--color-bg);
-    BorderColor: var(--color-primary);
-}
-
-/* Person Diagram */
-person {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
-}
-stack {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
+note {
+  BackgroundColor var(--color-surface-elevated);
+  LineColor var(--color-border);
+  FontColor var(--color-fg);
+  LineStyle 4 4;
+  Padding 5;
+  RoundCorner 5;
 }
 </style>
-
 @enduml

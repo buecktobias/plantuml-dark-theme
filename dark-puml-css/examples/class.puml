@@ -17,17 +17,18 @@ Collection <|- List : List to Coll
 AbstractCollection <|- AbstractList : AList to AColl
 AbstractList <|-- ArrayList : ArList to AList
 
-class ArrayList {
-  Object[] elementData
-  size()
-}
+package MyPackage{
+    class ArrayList {
+      Object[] elementData
+      size()
+    }
 
-enum TimeUnit {
-  DAYS
-  HOURS
-  MINUTES
+    enum TimeUnit {
+      DAYS
+      HOURS
+      MINUTES
+    }
 }
-
 annotation SuppressWarnings
 
 annotation Annotation {
