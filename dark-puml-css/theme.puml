@@ -42,7 +42,6 @@
     --color-primary: var(--color-blue);
 }
 
-/* Global settings for all diagram types */
 element {
     BackGroundColor: var(--color-bg);
     FontColor: var(--color-fg);
@@ -85,6 +84,8 @@ classDiagram {
     BackgroundColor: var(--color-bg);
     RoundCorner: 10;
     Padding 30;
+    StereotypeFontColor: var(--color-fg);
+
 
     arrow {
         LineColor var(--color-fg);
@@ -93,13 +94,14 @@ classDiagram {
         BackgroundColor: var(--color-bg-light);
         BorderColor: var(--color-primary);
         Padding 30;
+        StereotypeFontColor: var(--color-fg);
+
     }
 }
 
 actor {
     BackGroundColor: var(--color-bg-light);
     BorderColor: var(--color-primary);
-    StereotypeFontColor: var(--color-fg);
 }
 
 agent {
@@ -157,31 +159,6 @@ person {
     BorderColor: var(--color-primary);
 }
 stack {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
-}
-
-/* State Diagram */
-state {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-primary);
-    EndColor: var(--color-red);
-    StartColor: var(--color-green);
-}
-
-/* Storage Diagram */
-storage {
-    BackGroundColor: var(--color-bg-light);
-    BorderColor: var(--color-fg);
-}
-
-/* Swimlane */
-swimlane {
-    BorderColor: var(--color-fg);
-}
-
-/* Usecase Diagram */
-usecase {
     BackGroundColor: var(--color-bg-light);
     BorderColor: var(--color-primary);
 }
