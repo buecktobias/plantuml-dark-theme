@@ -1,27 +1,32 @@
 @startuml
-' Global font and shadow settings
+' Global fallback settings via skinparam
 skinparam defaultFontName "Roboto"
 skinparam defaultFontSize 16
 skinparam Shadowing false
 skinparam packageStyle rectangle
-skinparam stereotypeCBackgroundColor YellowGreen
-skinparam stereotypeCCircleColor YellowGreen
-skinparam CircledCharacterFontColor YellowGreen
+skinparam stereotypeCBackgroundColor #089
+skinparam stereotypeEBackgroundColor #096
+skinparam stereotypeIBackgroundColor #5bc
+skinparam stereotypeABackgroundColor #809
+
 skinparam ClassStereotypeFontColor white
 skinparam CircledCharacterFontStyle bold
-skinparam BoxPadding 20
+skinparam BoxPadding 10
+skinparam UseBetaStyle true
+skinparam ParticipantPadding 10
 
 <style>
 :root {
+  /* Color Variables */
   --color-bg-dark: #121212;
-  --color-bg-light: #3e3e4e;
-  --color-bg: #2e2e2e;
+  --color-bg-light: #2e2e2e;
+  --color-bg: #3e3e4e;
   --color-surface-elevated: #2a2a2a;
   --color-bg-front: #3a3a3a;
   --color-overlay: #00000080;
   --color-border: #2c2c2c;
 
-  --color-primary: #90caf9;
+  --color-primary: #c0caf9;
   --color-primary-hover: #64b5f6;
   --color-primary-active: #42a5f5;
 
@@ -49,158 +54,460 @@ skinparam BoxPadding 20
   --color-purple: #c678dd;
   --color-teal: #56b6c2;
 
-  --color-fg: var(--color-text-primary);
-  --color-primary: var(--color-blue);
+  --color-fg: #ffffff;
+
+  /* Spacing Variables */
+  --padding-0: 0;
+  --padding-1: 10;
+  --padding-2: 20;
+  --padding-3: 40;
+
+  --margin-0: 0;
+  --margin-1: 10;
+  --margin-2: 20;
+  --margin-3: 40;
+  --margin-4: 80;
+
+  /* Line Thickness Variables */
+  --lineThickness-1: 1;
+  --lineThickness-2: 2;
+  --lineThickness-3: 3;
+
+  /* Rounded Corner Variables */
+  --roundCorner-0: 0;
+  --roundCorner-1: 5;
+  --roundCorner-2: 10;
+  --roundCorner-3: 15;
+
+  /* Font Size Variables */
+  --font-size-1: 14;
+  --font-size-2: 16;
+  --font-size-3: 18;
+  --font-size-4: 20;
+
+  /* Line Style Variables */
+  --lineStyle-solid: 1 1;
+  --lineStyle-dotted: 1 1;
+  --lineStyle-dashed: 4-4;
 }
 
 /* Universal defaults for all elements */
 '*' {
-  FontName "Roboto";
-  FontSize 16;
-  Padding 20;
+  FontName: "Roboto";
+  FontSize: var(--font-size-2);
+  FontColor: var(--color-fg);
+  BorderColor: #000000;
+  Padding: var(--padding-2);
+  Margin: var(--margin-4);
+  HyperLinkColor: var(--color-primary-hover);
+  LineStyle: var(--lineStyle-solid);
+  DiagonalCorner: 0;
+  MaximumWidth: 300;
+  HorizontalAlignment: left;
+  /* ExportedName: not implemented */
+  /* Image: not implemented */
+  /* ImagePosition: not implemented */
+  /* MinimumWidth: not implemented */
 }
 
 /* Arrow styling */
 arrow {
-  LineThickness 2;
-  FontColor var(--color-fg);
-  FontSize 15;
-  LineColor var(--color-primary);
+  LineThickness: var(--lineThickness-2);
+  LineColor: var(--color-primary);
+  FontColor: var(--color-fg);
+  FontSize: var(--font-size-2);
+  LineStyle: var(--lineStyle-solid);
+}
+
+/* Title, Header, Footer, Caption, Legend */
+title {
+  FontColor: var(--color-fg);
+  FontSize: var(--font-size-3);
+  FontStyle: bold;
+  HorizontalAlignment: center;
+}
+header {
+  FontColor: var(--color-secondary);
+  FontSize: var(--font-size-3);
+  HorizontalAlignment: center;
+}
+footer {
+  FontColor: var(--color-secondary);
+  FontSize: var(--font-size-2);
+  HorizontalAlignment: center;
+}
+caption {
+  FontColor: var(--color-text-muted);
+  FontSize: var(--font-size-2);
+  HorizontalAlignment: center;
+}
+legend {
+  BackgroundColor: var(--color-surface-elevated);
+  LineColor: var(--color-border);
+  FontColor: var(--color-fg);
+  RoundCorner: var(--roundCorner-1);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
 }
 
 /* === Class Diagram styles === */
 classDiagram {
-  BackgroundColor var(--color-bg-dark);
-  LineColor var(--color-primary);
+  BackgroundColor: var(--color-bg-dark);
+  LineColor: var(--color-primary);
 
   class {
-    BackgroundColor var(--color-bg-light);
-    FontColor var(--color-fg);
-    LineColor var(--color-primary);
-    LineThickness 1;
-    RoundCorner 8;
-    Padding 20;
-    Margin 10;
+    BackgroundColor: var(--color-bg-light);
+    FontColor: var(--color-fg);
+    LineColor: var(--color-primary);
+    LineThickness: var(--lineThickness-1);
+    RoundCorner: var(--roundCorner-2);
+    LineStyle: var(--lineStyle-solid);
   }
   interface {
-    BackgroundColor var(--color-bg-light);
-    FontColor var(--color-fg);
-    LineColor var(--color-teal);
-    LineThickness 2;
-    RoundCorner 5;
-    Padding 8;
-    Margin 10;
+    BackgroundColor: var(--color-bg-light);
+    FontColor: var(--color-fg);
+    LineColor: var(--color-teal);
+    LineThickness: var(--lineThickness-2);
+    RoundCorner: var(--roundCorner-1);
+    LineStyle: var(--lineStyle-solid);
   }
   package {
-    FontStyle bold;
-    FontColor var(--color-fg);
-    BackgroundColor var(--color-bg);
-    LineColor var(--color-border);
-    LineThickness 1.5;
-    RoundCorner 5;
-    Padding 20;
-    Margin 20;
+    FontStyle: bold;
+    FontColor: var(--color-fg);
+    BorderColor: var(--color-border);
+    BackgroundColor: var(--color-bg);
+    LineColor: var(--color-border);
+    LineThickness: var(--lineThickness-2);  ' Use a variable here if needed, else 1.5 is close to var(--lineThickness-2)
+    RoundCorner: var(--roundCorner-3);
+    LineStyle: var(--lineStyle-solid);
   }
 }
 
 /* === Component Diagram styles === */
 componentDiagram {
-  BackgroundColor var(--color-bg-dark);
-  LineColor var(--color-secondary);
+  BackgroundColor: var(--color-bg-dark);
+  LineColor: var(--color-secondary);
 
   component {
-    BackgroundColor var(--color-bg-light);
-    LineColor var(--color-secondary);
-    LineThickness 2;
-    RoundCorner 5;
-    Padding 8;
-    Margin 10;
+    BackgroundColor: var(--color-bg-light);
+    FontColor: var(--color-fg);
+    LineColor: var(--color-secondary);
+    LineThickness: var(--lineThickness-2);
+    RoundCorner: var(--roundCorner-1);
+    Padding: var(--padding-1);
+    Margin: var(--margin-1);
+    LineStyle: var(--lineStyle-solid);
   }
   interface {
-    BackgroundColor var(--color-bg-light);
-    LineColor var(--color-secondary);
-    LineThickness 2;
-    RoundCorner 5;
-    Padding 8;
-    Margin 10;
+    BackgroundColor: var(--color-bg-light);
+    FontColor: var(--color-fg);
+    LineColor: var(--color-secondary);
+    LineThickness: var(--lineThickness-2);
+    RoundCorner: var(--roundCorner-1);
+    Padding: var(--padding-1);
+    Margin: var(--margin-1);
+    LineStyle: var(--lineStyle-solid);
   }
   package {
-    BackgroundColor var(--color-bg-dark);
-    LineColor var(--color-border);
-    LineThickness 1.5;
-    RoundCorner 5;
-    Padding 10;
-    Margin 20;
+    BackgroundColor: var(--color-bg-dark);
+    FontColor: var(--color-fg);
+    LineColor: var(--color-border);
+    LineThickness: var(--lineThickness-2);
+    RoundCorner: var(--roundCorner-1);
+    Padding: var(--padding-1);
+    Margin: var(--margin-2);
+    LineStyle: var(--lineStyle-solid);
   }
 }
 
 /* === Deployment Diagram styles === */
 deploymentDiagram {
-  BackgroundColor var(--color-bg-dark);
-  LineColor var(--color-accent-active);
+  BackgroundColor: var(--color-bg-dark);
+  LineColor: var(--color-accent-active);
 
   node {
-    BackgroundColor var(--color-bg-light);
-    LineColor var(--color-accent-active);
-    LineThickness 2;
-    RoundCorner 5;
-    Padding 8;
-    Margin 10;
+    BackgroundColor: var(--color-bg-light);
+    FontColor: var(--color-fg);
+    LineColor: var(--color-accent-active);
+    LineThickness: var(--lineThickness-2);
+    RoundCorner: var(--roundCorner-1);
+    Padding: var(--padding-1);
+    Margin: var(--margin-1);
+    LineStyle: var(--lineStyle-solid);
   }
   artifact {
-    BackgroundColor var(--color-bg-light);
-    LineColor var(--color-accent-active);
-    LineThickness 2;
-    RoundCorner 5;
-    Padding 8;
-    Margin 8;
+    BackgroundColor: var(--color-bg-light);
+    FontColor: var(--color-fg);
+    LineColor: var(--color-accent-active);
+    LineThickness: var(--lineThickness-2);
+    RoundCorner: var(--roundCorner-1);
+    Padding: var(--padding-1);
+    Margin: var(--margin-1);
+    LineStyle: var(--lineStyle-solid);
   }
   component {
-    BackgroundColor var(--color-bg-light);
-    LineColor var(--color-accent-active);
-    LineThickness 2;
-    RoundCorner 5;
-    Padding 8;
-    Margin 8;
+    BackgroundColor: var(--color-bg-light);
+    FontColor: var(--color-fg);
+    LineColor: var(--color-accent-active);
+    LineThickness: var(--lineThickness-2);
+    RoundCorner: var(--roundCorner-1);
+    Padding: var(--padding-1);
+    Margin: var(--margin-1);
+    LineStyle: var(--lineStyle-solid);
   }
   package {
-    BackgroundColor var(--color-bg-dark);
-    LineColor var(--color-border);
-    LineThickness 1.5;
-    RoundCorner 5;
-    Padding 10;
-    Margin 20;
+    BackgroundColor: var(--color-bg-dark);
+    FontColor: var(--color-fg);
+    LineColor: var(--color-border);
+    LineThickness: var(--lineThickness-2);
+    RoundCorner: var(--roundCorner-1);
+    Padding: var(--padding-1);
+    Margin: var(--margin-2);
+    LineStyle: var(--lineStyle-solid);
   }
   database {
-    BackgroundColor var(--color-bg-light);
-    LineColor var(--color-accent-active);
-    LineThickness 2;
-    RoundCorner 5;
-    Padding 8;
-    Margin 8;
+    BackgroundColor: var(--color-bg-light);
+    FontColor: var(--color-fg);
+    LineColor: var(--color-accent-active);
+    LineThickness: var(--lineThickness-2);
+    RoundCorner: var(--roundCorner-1);
+    Padding: var(--padding-1);
+    Margin: var(--margin-1);
+    LineStyle: var(--lineStyle-solid);
   }
 }
 
-/* === Common element styles (across all diagrams) === */
-title {
-  FontColor var(--color-fg);
-  FontSize 18;
-  FontStyle bold;
+/* === Common UML element styles (for all diagrams) === */
+actor {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-primary);
+  LineThickness: var(--lineThickness-2);
+  RoundCorner: var(--roundCorner-1);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
 }
-legend {
-  BackgroundColor var(--color-surface-elevated);
-  LineColor var(--color-border);
-  FontColor var(--color-fg);
-  RoundCorner 5;
-  Padding 8;
+agent {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-primary);
+  LineThickness: var(--lineThickness-2);
+  RoundCorner: var(--roundCorner-1);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
 }
-note {
-  BackgroundColor var(--color-surface-elevated);
-  LineColor var(--color-border);
-  FontColor var(--color-fg);
-  LineStyle 4 4;
-  Padding 5;
-  RoundCorner 5;
+artifact {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-accent);
+  LineThickness: var(--lineThickness-2);
+  RoundCorner: var(--roundCorner-1);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+boundary {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-border);
+  LineThickness: var(--lineThickness-2);
+  RoundCorner: var(--roundCorner-1);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+card {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-secondary);
+  LineThickness: var(--lineThickness-2);
+  RoundCorner: var(--roundCorner-1);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+circle {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-secondary);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+cloud {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-accent);
+  LineThickness: var(--lineThickness-2);
+  RoundCorner: var(--roundCorner-1);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+collections {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-secondary);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+control {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-primary);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+database {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-accent-active);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+entity {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-primary);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+file {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-border);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+folder {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-border);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+frame {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-secondary);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+hexagon {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-success);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+interface {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-teal);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+label {
+  BackgroundColor: var(--color-bg);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-border);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+node {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-primary);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+package {
+  BackgroundColor: var(--color-bg);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-border);
+  LineThickness: var(--lineThickness-2);
+  RoundCorner: var(--roundCorner-1);
+  Padding: var(--padding-2);
+  Margin: var(--margin-2);
+  LineStyle: var(--lineStyle-solid);
+}
+person {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-primary);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+queue {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-secondary);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+rectangle {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-primary);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+stack {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-secondary);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+storage {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-border);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
+}
+usecase {
+  BackgroundColor: var(--color-bg-light);
+  FontColor: var(--color-fg);
+  LineColor: var(--color-purple);
+  LineThickness: var(--lineThickness-2);
+  Padding: var(--padding-1);
+  Margin: var(--margin-1);
+  LineStyle: var(--lineStyle-solid);
 }
 </style>
 @enduml
